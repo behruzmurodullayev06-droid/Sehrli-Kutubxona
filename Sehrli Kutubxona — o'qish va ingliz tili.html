@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sehrli Kutubxona — o'qish va ingliz tili</title>
+<style>
+:root{--bg:#fff8ec;--card:#fff;--ink:#2d2a4a;--muted:#6b6785;--a:#ff7a59;--b:#4cc9f0;--c:#7bd389;--d:#b388ff;--shadow:0 8px 24px rgba(45,42,74,.12);padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);box-sizing:border-box}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1d1b33;--card:#2a2747;--ink:#f4f1ff;--muted:#b9b4d6;--shadow:0 8px 24px rgba(0,0,0,.4)}}
+:root[data-theme="dark"]{--bg:#1d1b33;--card:#2a2747;--ink:#f4f1ff;--muted:#b9b4d6;--shadow:0 8px 24px rgba(0,0,0,.4)}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",Roboto,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+.hero{background:linear-gradient(135deg,var(--a),var(--d) 55%,var(--b));color:#fff;text-align:center;padding:28px 20px 56px;border-radius:0 0 40px 40px}
+.hero h1{font-size:clamp(1.8rem,5vw,2.8rem);margin:12px 0 4px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;max-width:1000px;margin:0 auto}
+.stars{background:rgba(255,255,255,.2);padding:6px 14px;border-radius:999px}
+nav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:-26px 12px 0;position:relative;z-index:2}
+nav button{background:var(--card);color:var(--ink);border:0;padding:10px 16px;border-radius:999px;box-shadow:var(--shadow);font-weight:600;cursor:pointer;font-size:.95rem}
+nav button.on{background:var(--a);color:#fff}
+main{max-width:1000px;margin:0 auto;padding:36px 18px 60px}
+h2{font-size:1.6rem;margin:0 0 6px}
+.sub{color:var(--muted);margin:0 0 20px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.card{background:var(--card);border-radius:22px;padding:20px;box-shadow:var(--shadow)}
+.card h3{margin:0 0 6px;font-size:1.2rem}
+.btn{display:inline-block;border:0;cursor:pointer;background:var(--a);color:#fff;font-weight:700;font-size:1rem;padding:11px 20px;border-radius:14px;margin-top:8px;transition:transform .1s}
+.btn:hover:not(:disabled){transform:scale(1.04)}
+.btn:disabled{background:var(--muted);cursor:not-allowed;opacity:.6}
+.btn.alt{background:var(--b)}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--muted)}
+.btn.sm{padding:6px 14px;font-size:.9rem;margin:0}
+.uz{color:var(--muted);font-size:.95rem;display:block}
+.word{cursor:pointer;text-align:center}
+.word b{font-size:1.3rem}
+.status{font-weight:700;font-size:.9rem;margin-bottom:6px}
+.ok-s{color:#2e9e4f}.lock-s{color:var(--muted)}.go-s{color:var(--a)}
+.board{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-top:14px}
+.tile{background:var(--bg);border:3px solid transparent;border-radius:16px;padding:16px 8px;text-align:center;cursor:pointer;font-size:1.05rem;font-weight:600;color:var(--ink)}
+.tile.sel{border-color:var(--b)}.tile.ok{background:#d6f5dc;border-color:var(--c)}.tile.bad{background:#ffd9d1;border-color:var(--a)}
+input{width:100%;padding:12px;border-radius:12px;border:2px solid var(--muted);background:var(--bg);color:var(--ink);font-size:1rem;margin:6px 0}
+.opt{display:block;padding:10px 12px;border:2px solid var(--muted);border-radius:12px;margin:6px 0;cursor:pointer}
+.opt input{width:auto;margin-right:8px}
+.q{margin:18px 0}.q p{font-weight:700;margin:0 0 4px}
+.ex{background:var(--bg);border-radius:14px;padding:12px 14px;margin:8px 0;cursor:pointer}
+.fb{min-height:26px;font-weight:700;margin-top:10px}
+.auth{max-width:440px;margin:0 auto}
+.tabs{display:flex;gap:8px;margin-bottom:10px}
+.room{position:relative;height:300px;border-radius:20px;overflow:hidden;box-shadow:var(--shadow);border:4px solid #fff;transition:background .4s}
+.floor{position:absolute;left:0;right:0;bottom:0;height:32%;background:#e8d3b4}
+.furn{position:absolute;bottom:22%;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:2rem;padding:4px;text-align:center;box-shadow:0 4px 10px rgba(0,0,0,.15)}
+.bar{display:flex;gap:8px;justify-content:space-between;align-items:center;flex-wrap:wrap;margin-top:12px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:12px;opacity:0;transition:.3s;pointer-events:none}
+.toast.show{opacity:1}
+.row{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:var(--bg);border-radius:14px;margin:8px 0}
+.me{outline:3px solid var(--a)}
+footer{text-align:center;color:var(--muted);padding:24px;font-size:.9rem}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const WORDS=[["cat","mushuk"],["dog","it"],["apple","olma"],["sun","quyosh"],["book","kitob"],["fish","baliq"],["bird","qush"],["flower","gul"],["water","suv"],["tree","daraxt"],["house","uy"],["car","mashina"],["milk","sut"],["bread","non"],["school","maktab"],["friend","do'st"],["mother","ona"],["father","ota"],["red","qizil"],["blue","ko'k"],["green","yashil"],["big","katta"],["small","kichik"],["happy","xursand"],
+["lion","sher"],["cow","sigir"],["horse","ot"],["duck","o'rdak"],["rabbit","quyon"],["bear","ayiq"],["monkey","maymun"],["pig","cho'chqa"],["sheep","qo'y"],["frog","qurbaqa"],["egg","tuxum"],["rice","guruch"],["cheese","pishloq"],["juice","sharbat"],["cake","tort"],["banana","banan"],["carrot","sabzi"],["soup","sho'rva"],["tea","choy"],["hand","qo'l"],["eye","ko'z"],["head","bosh"],["nose","burun"],["ear","quloq"],["leg","oyoq"],["window","deraza"]];
+const TENSES=[
+{id:"ps",name:"Present Simple",uz:"Hozirgi oddiy zamon",rule:"Odatiy harakatlar uchun. I/You/We/They + V; He/She/It + V+s.",ex:["I read books every day.","She likes cats."],q:[
+["She ___ to school every day.",["go","goes","going"],1],["They ___ English well.",["speaks","speak","speaking"],1],["I ___ coffee in the morning.",["drinks","drink","drank"],1],["He ___ football on Sundays.",["play","plays","played"],1]]},
+{id:"pc",name:"Present Continuous",uz:"Hozirgi davom etayotgan zamon",rule:"am/is/are + V-ing. Hozir bo'layotgan ish.",ex:["I am reading now.","They are playing outside."],q:[
+["I ___ a letter now.",["write","am writing","wrote"],1],["She ___ to music.",["listens","is listening","listened"],1],["We ___ dinner at the moment.",["eat","are eating","ate"],1],["Look! It ___.",["is raining","rains","rained"],0]]},
+{id:"pa",name:"Past Simple",uz:"O'tgan oddiy zamon",rule:"Tugagan o'tgan ish. Oddiy fe'l: -ed qo'shiladi; noto'g'ri fe'llar o'zgaradi (go - went).",ex:["I played football yesterday.","We went to the park last week."],q:[
+["We ___ to the park yesterday.",["go","went","going"],1],["He ___ his homework last night.",["does","did","done"],1],["They ___ TV two hours ago.",["watched","watch","watching"],0],["She ___ a cake on Monday.",["bake","baked","baking"],1]]},
+{id:"fs",name:"Future Simple",uz:"Kelasi oddiy zamon",rule:"will + V. Kelajakdagi reja yoki qaror.",ex:["I will visit Tashkent next week.","It will be sunny tomorrow."],q:[
+["Tomorrow I ___ my friend.",["will visit","visited","visiting"],0],["It ___ rain tomorrow.",["will","did","is"],0],["We ___ a new house next year.",["will buy","bought","buying"],0],["She ___ help you later.",["will","was","has"],0]]}
+];
+const STORIES=[
+{title:"Mushuk va to'p",lines:[["A cat sees a red ball.","Mushuk qizil to'pni ko'radi."],["The cat plays with the ball.","Mushuk to'p bilan o'ynaydi."],["The ball rolls. The cat is happy.","To'p dumalaydi. Mushuk xursand."]]},
+{title:"Mening do'stim it",lines:[["I have a dog.","Mening itim bor."],["His name is Max.","Uning ismi Maks."],["Max likes to run. We go to the park.","Maks yugurishni yaxshi ko'radi. Biz bog'ga boramiz."]]}
+];
+// Do'kon: paint o'zgartiradi devor rangini, furn uyga joylanadi
+const ITEMS=[
+{id:"p1",name:"Ko'k bo'yoq",price:800,type:"paint",color:"#bfe3ff"},
+{id:"p2",name:"Yashil bo'yoq",price:800,type:"paint",color:"#c9f2c7"},
+{id:"p3",name:"Sariq bo'yoq",price:800,type:"paint",color:"#fff1a8"},
+{id:"f1",name:"Gilam",price:500,type:"furn",color:"#c98b5a",w:110},
+{id:"f2",name:"Chiroq",price:300,type:"furn",color:"#ffd36e",w:50},
+{id:"f3",name:"O'simlik",price:250,type:"furn",color:"#5fbf7a",w:60},
+{id:"f4",name:"Karavot",price:1000,type:"furn",color:"#9b7ae6",w:150},
+{id:"f5",name:"Kitob javoni",price:600,type:"furn",color:"#8a6a4f",w:100},
+{id:"f6",name:"Rasm",price:200,type:"furn",color:"#ff8fa3",w:70},
+{id:"f7",name:"Kreslo",price:700,type:"furn",color:"#ff7a59",w:90}
+];
+const EMO={p1:"🔵",p2:"🟢",p3:"🟡",f1:"🧶",f2:"💡",f3:"🪴",f4:"🛏️",f5:"📚",f6:"🖼️",f7:"🛋️"};
+const FRIENDS=[{n:"Do'st 1",s:1450},{n:"Do'st 2",s:980},{n:"Do'st 3",s:620},{n:"Do'st 4",s:310}];
+
+const $=id=>document.getElementById(id);
+const app=$("app");
+const DB="sk_users_v3",SESS="sk_session_v3";
+function db(){try{let d=JSON.parse(localStorage.getItem(DB))||{};const old=JSON.parse(localStorage.getItem("sk_users_v2"))||{};for(const k in old)if(!d[k])d[k]=old[k];return d}catch(e){return{}}}
+function saveDb(d){try{localStorage.setItem(DB,JSON.stringify(d))}catch(e){}}
+function getSess(){try{return localStorage.getItem(SESS)}catch(e){return null}}
+function setSess(u){try{u?localStorage.setItem(SESS,u):localStorage.removeItem(SESS)}catch(e){}}
+function hash(s){let h=5381;for(const c of s)h=((h<<5)+h+c.charCodeAt(0))|0;return String(h)}
+function me(){const u=db()[getSess()];if(u){u.owned=u.owned||[];u.room=u.room||{wall:"#fff8ec",placed:[]};}return u}
+function update(fn){const d=db(),u=getSess();fn(d[u]);saveDb(d)}
+function setStars(){const s=$("st");if(s)s.textContent=me().stars}
+function addStar(n){update(x=>x.stars+=n);setStars()}
+function toast(m){const t=$("toast");t.textContent=m;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1500)}
+function speak(t){if(!("speechSynthesis" in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang="en-US";u.rate=.85;speechSynthesis.speak(u)}
+const shuffle=a=>[...a].sort(()=>Math.random()-.5);
+
+function authView(mode="login"){
+  app.innerHTML=`<header class="hero"><h1>Sehrli Kutubxona</h1><p>O'qish va ingliz tili o'rganish maskani</p></header>
+  <main><div class="card auth">
+    <div class="tabs"><button class="btn ${mode==='login'?'':'ghost'}" id="tL">Kirish</button><button class="btn ${mode==='reg'?'':'ghost'}" id="tR">Ro'yxatdan o'tish</button></div>
+    <form id="af">
+      ${mode==='reg'?'<input name="first" placeholder="Ism" required><input name="last" placeholder="Familiya" required>':''}
+      <input name="user" placeholder="Login" required minlength="3">
+      <input name="pass" type="password" placeholder="Parol (kamida 4 belgi)" required minlength="4">
+      <button class="btn" type="submit">${mode==='reg'?"Ro'yxatdan o'tish":"Kirish"}</button>
+      <div class="fb" id="afb"></div>
+    </form></div></main>`;
+  $("tL").onclick=()=>authView("login");$("tR").onclick=()=>authView("reg");
+  $("af").onsubmit=e=>{
+    e.preventDefault();const f=new FormData(e.target);
+    const u=f.get("user").trim().toLowerCase(),p=f.get("pass"),d=db();
+    if(mode==='reg'){
+      if(d[u]){$("afb").textContent="Bu login band";return}
+      d[u]={first:f.get("first").trim(),last:f.get("last").trim(),hash:hash(p),stars:200,tenses:{},owned:[],room:{wall:"#fff8ec",placed:[]}};saveDb(d);
+    }else if(!d[u]||d[u].hash!==hash(p)){$("afb").textContent="Login yoki parol noto'g'ri";return}
+    setSess(u);appView("home");
+  };
+}
+
+const TABS=[["home","Mening uyim"],["shop","Do'kon"],["friends","Reyting"],["words","Lug'at"],["tenses","Zamonlar"],["stories","Hikoyalar"],["match","O'yin"]];
+function appView(tab){
+  const u=me();
+  app.innerHTML=`<header class="hero"><div class="top"><span>Salom, ${u.first} ${u.last}!</span>
+    <span class="stars">Yulduz: <b id="st">${u.stars}</b></span><button class="btn ghost sm" id="out">Chiqish</button></div>
+    <h1>Sehrli Kutubxona</h1></header>
+    <nav>${TABS.map(([k,l])=>`<button data-t="${k}" class="${k===tab?'on':''}">${l}</button>`).join("")}</nav>
+    <main id="view"></main><footer>Sehrli Kutubxona</footer>`;
+  $("out").onclick=()=>{setSess(null);authView()};
+  app.querySelectorAll("nav button").forEach(b=>b.onclick=()=>appView(b.dataset.t));
+  ({home:viewHome,shop:viewShop,friends:viewFriends,words:viewWords,tenses:viewTenses,stories:viewStories,match:viewMatch})[tab]();
+}
+
+function roomHTML(u){
+  const placed=u.room.placed.map(id=>ITEMS.find(i=>i.id===id)).filter(Boolean);
+  return `<div class="room" style="background:${u.room.wall}"><div class="floor"></div>
+    ${placed.map((it,i)=>`<div class="furn" style="background:${it.color};left:${8+i*(it.w?0:0)}px;width:${it.w}px;height:${it.w>100?90:(it.w>60?80:70)}px;${i%2?'bottom:24%;':''};left:calc(${(i%4)*24+4}% )">${EMO[it.id]}</div>`).join("")}
+    ${placed.length?"":`<div style="position:absolute;top:40%;width:100%;text-align:center;color:var(--muted)">Uyingiz bo'sh. Do'kondan buyum sotib oling.</div>`}</div>`;
+}
+function viewHome(){
+  const u=me();
+  $("view").innerHTML=`<h2>Mening uyim</h2><p class="sub">Yulduzlar bilan uyingizni bezang. Yulduzlar: <b>${u.stars}</b></p>
+  ${roomHTML(u)}
+  <div class="card" style="margin-top:16px"><h3>Mening buyumlarim</h3>
+  ${u.owned.length?u.owned.map(id=>{const it=ITEMS.find(i=>i.id===id);
+    if(it.type==="paint")return `<div class="row"><span>${EMO[it.id]}</span><span>${u.room.wall===it.color?"Qo'llanilgan":`<button class="btn sm alt" data-paint="${it.id}">Qo'llash</button>`}</span></div>`;
+    const on=u.room.placed.includes(id);
+    return `<div class="row"><span>${EMO[it.id]}</span><button class="btn sm ${on?'ghost':''}" data-place="${it.id}">${on?"Olib tashlash":"Joylash"}</button></div>`}).join(""):"<p>Hali buyum yo'q. Do'konga o'ting.</p>"}
+  </div>`;
+  $("view").onclick=e=>{
+    const p=e.target.dataset.place,pt=e.target.dataset.paint;
+    if(p)update(x=>{const i=x.room.placed.indexOf(p);if(i>-1)x.room.placed.splice(i,1);else{if(x.room.placed.length>=6){toast("Uyda 6 tagacha buyum bo'lishi mumkin");return}x.room.placed.push(p)}});
+    if(pt)update(x=>x.room.wall=ITEMS.find(i=>i.id===pt).color);
+    if(p||pt)viewHome();
+  };
+}
+
+function viewShop(){
+  const u=me();
+  $("view").innerHTML=`<h2>Do'kon</h2><p class="sub">Buyumlarni yulduzlarga sotib oling. Yulduzlaringiz: <b id="st">${u.stars}</b></p><div class="grid">${
+    ITEMS.map(it=>{const owned=u.owned.includes(it.id);
+      return `<div class="card"><div style="font-size:2.6rem;text-align:center;margin-bottom:6px">${EMO[it.id]}</div>
+      <h3>${it.name}</h3><span class="uz">${it.type==="paint"?"Devor rangini o'zgartiradi":"Uyga joylanadi"}</span>
+      <p><b>${it.price} yulduz</b></p>
+      <button class="btn" data-buy="${it.id}" ${owned||u.stars<it.price?'disabled':''}>${owned?"Sotib olingan":(u.stars<it.price?"Yulduz yetarli emas":"Sotib olish")}</button></div>`}).join("")}</div>`;
+  $("view").onclick=e=>{
+    const id=e.target.dataset.buy;if(!id)return;
+    const it=ITEMS.find(i=>i.id===id);const cur=me();
+    if(cur.stars<it.price||cur.owned.includes(id))return;
+    update(x=>{x.stars-=it.price;x.owned.push(id)});
+    toast(`${it.name} sotib olindi!`);viewShop();
+  };
+}
+
+function viewFriends(){
+  const u=me();
+  const list=[...FRIENDS,{n:`${u.first} (siz)`,s:u.stars,me:true}].sort((a,b)=>b.s-a.s);
+  $("view").innerHTML=`<h2>Reyting</h2><p class="sub">Do'stlaringiz bilan yulduzlar bo'yicha poyga qiling!</p>
+  <div class="card">${list.map((x,i)=>`<div class="row ${x.me?'me':''}"><span><b>${i+1}.</b> ${x.n}</span><b>${x.s} yulduz</b></div>`).join("")}</div>`;
+}
+
+function viewWords(){
+  $("view").innerHTML=`<h2>Yangi so'zlar</h2><p class="sub">Kartani bossangiz so'z ovozli aytiladi.</p><div class="grid">${
+    WORDS.map(([en,uz])=>`<div class="card word" data-en="${en}"><b>${en}</b><span class="uz">${uz}</span></div>`).join("")}</div>`;
+  $("view").querySelectorAll(".word").forEach(c=>c.onclick=()=>speak(c.dataset.en));
+}
+
+function viewTenses(){
+  const u=me();
+  $("view").innerHTML=`<h2>Zamonlar</h2><p class="sub">Zamonlarni ketma-ket o'rganing. Keyingi zamon ochilishi uchun joriy zamon testidan kamida 3 ta to'g'ri javob kerak. O'tilgan zamonlarni istalgan vaqtda qayta ko'rishingiz mumkin.</p>
+  <div class="grid">${TENSES.map((t,i)=>{
+    const done=!!u.tenses[t.id],locked=i>0&&!u.tenses[TENSES[i-1].id];
+    const st=done?`<div class="status ok-s">O'tildi</div>`:locked?`<div class="status lock-s">Qulflangan</div>`:`<div class="status go-s">Ochiq</div>`;
+    return `<div class="card">${st}<h3>${t.name}</h3><span class="uz">${t.uz}</span>
+      <button class="btn ${done?'alt':''}" data-i="${i}" ${locked?'disabled':''}>${done?"Qayta ko'rish":(locked?"Qulflangan":"Boshlash")}</button></div>`}).join("")}</div><div id="lesson"></div>`;
+  $("view").querySelectorAll("[data-i]").forEach(b=>b.onclick=()=>lesson(+b.dataset.i));
+}
+
+function lesson(i){
+  const t=TENSES[i];
+  $("lesson").innerHTML=`<div class="card" style="margin-top:22px"><h2>${t.name}</h2><p class="sub">${t.uz}</p>
+    <p>${t.rule}</p><p><b>Misollar (bosing — eshiting):</b></p>
+    ${t.ex.map(x=>`<div class="ex">${x}</div>`).join("")}
+    <h3>Test (kamida 3 ta to'g'ri)</h3>
+    <form id="qf">${t.q.map((q,qi)=>`<div class="q"><p>${qi+1}. ${q[0]}</p>${q[1].map((o,oi)=>`<label class="opt"><input type="radio" name="q${qi}" value="${oi}">${o}</label>`).join("")}</div>`).join("")}
+    <button class="btn" type="submit">Tekshirish</button><div class="fb" id="qfb"></div></form></div>`;
+  $("lesson").querySelectorAll(".ex").forEach(e=>e.onclick=()=>speak(e.textContent));
+  $("qf").onsubmit=e=>{
+    e.preventDefault();const f=new FormData(e.target);
+    if(t.q.some((_,qi)=>f.get("q"+qi)===null)){$("qfb").textContent="Barcha savollarga javob bering";$("qfb").style.color="#d9534f";return}
+    const score=t.q.filter((q,qi)=>+f.get("q"+qi)===q[2]).length;
+    if(score>=3){
+      const wasDone=!!me().tenses[t.id];
+      update(u=>u.tenses[t.id]=true);
+      if(!wasDone){addStar(5)}
+      $("qfb").style.color="#2e9e4f";
+      $("qfb").textContent=`Ajoyib! ${score}/4. ${i<TENSES.length-1?"Keyingi zamon ochildi.":"Barcha zamonlar tugadi!"}`;
+    }else{
+      $("qfb").style.color="#d9534f";
+      $("qfb").textContent=`${score}/4. Yana urinib ko'ring (kamida 3 ta kerak).`;
+    }
+  };
+}
+
+function viewStories(){
+  $("view").innerHTML=`<h2>Hikoyalar</h2><p class="sub">Hikoyani o'qing, ovozli tinglang va «O'qidim» tugmasi bilan yulduz oling.</p><div class="grid">${
+    STORIES.map((s,i)=>`<div class="card"><h3>${s.title}</h3>${s.lines.map(([en,uz])=>`<p>${en}<span class="uz">${uz}</span></p>`).join("")}
+    <button class="btn alt" data-r="${i}">Ovozli o'qish</button> <button class="btn" data-d="${i}">O'qidim</button></div>`).join("")}</div>`;
+  $("view").onclick=e=>{
+    const r=e.target.dataset.r,d=e.target.dataset.d;
+    if(r!==undefined)speak(STORIES[r].lines.map(l=>l[0]).join(" "));
+    if(d!==undefined){addStar(2);toast("Barakalla! +2 yulduz")}
+  };
+}
+
+function viewMatch(){
+  $("view").innerHTML=`<h2>Juftlashtirish</h2><p class="sub">Ingliz so'zini uning o'zbekcha tarjimasi bilan juftlang.</p>
+  <button class="btn alt" id="nm">Yangi o'yin</button><div class="board" id="bd"></div><div class="fb" id="mfb"></div>`;
+  $("nm").onclick=newMatch;newMatch();
+}
+let sel=null,matched=0;
+function newMatch(){
+  const pick=shuffle(WORDS).slice(0,5);
+  const items=shuffle([...pick.map(([en])=>({k:en,l:en})),...pick.map(([en,uz])=>({k:en,l:uz}))]);
+  const bd=$("bd");bd.innerHTML="";sel=null;matched=0;$("mfb").textContent="";
+  items.forEach(it=>{
+    const t=document.createElement("div");t.className="tile";t.textContent=it.l;t.dataset.k=it.k;
+    t.onclick=()=>{
+      if(t.classList.contains("ok")||t===sel)return;
+      if(!sel){sel=t;t.classList.add("sel");speak(it.k);return}
+      const first=sel;sel.classList.remove("sel");sel=null;
+      if(first.dataset.k===t.dataset.k&&first.textContent!==t.textContent){
+        first.classList.add("ok");t.classList.add("ok");matched++;addStar(1);
+        $("mfb").style.color="#2e9e4f";$("mfb").textContent="To'g'ri! +1 yulduz";
+        if(matched===5){$("mfb").textContent="Ajoyib! Hammasi topildi. +3 yulduz";addStar(3)}
+      }else{
+        t.classList.add("bad");first.classList.add("bad");
+        $("mfb").style.color="#d9534f";$("mfb").textContent="Qayta urinib ko'ring";
+        setTimeout(()=>{t.classList.remove("bad");first.classList.remove("bad")},600);
+      }
+    };
+    bd.appendChild(t);
+  });
+}
+
+const s=getSess();
+if(s&&db()[s])appView("home");else authView();
+</script>
+</body>
+</html>
